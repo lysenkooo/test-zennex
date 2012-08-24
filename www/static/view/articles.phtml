@@ -1,0 +1,26 @@
+<?php foreach ($messages as $message): ?>
+<article style="clear: both;">
+    <div style="float: left;">
+        <p><?=$message['time']?> > <?=$message['user']?> говорит: <?=$message['text']?></p></div>
+    <?php if ($user !== false): ?>
+    <div style="float: right; vertical-align: middle;">
+        (<?=$message['likes']?>)
+        <?php if ( $message['user'] == $user ): ?>
+        <a class="ajax" href="?action=delete&id=<?=$message['id']?>"><img src="static/images/delete.png"></a>
+        <?php else: ?>
+        <?php if (!in_array($user, $message['liked'])): ?>
+            <a class="ajax" href="?action=like&id=<?=$message['id']?>"><img src="static/images/like.png"></a>
+            <?php else: ?>
+            <a class="ajax" href="?action=unlike&id=<?=$message['id']?>"><img src="static/images/like.png"></a>
+            <?php endif; ?>
+        <?php endif; ?>
+    </div>
+    <?php endif; ?>
+</article>
+<hr>
+<?php endforeach ?>
+<div style="clear: both;">
+    <?php if ( $isMore ): ?>
+    <a id="moreButton" href="?show=<?php echo ( isset($_GET['show']) ) ? $_GET['show'] + 10 : 20 ?>">Показать еще</a>
+    <?php endif; ?>
+</div>

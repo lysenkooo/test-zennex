@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Zennex Chat</title>
+	<meta name="description" content="Interview test task">
+	<meta name="author" content="Denis Lysenko">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="static/stylesheets/base.css">
+	<link rel="stylesheet" href="static/stylesheets/skeleton.css">
+	<link rel="stylesheet" href="static/stylesheets/layout.css">
+    <link rel="stylesheet" href="static/stylesheets/zennex.css">
+    <!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link rel="shortcut icon" href="static/images/favicon.ico">
+	<link rel="apple-touch-icon" href="static/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="static/images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="static/images/apple-touch-icon-114x114.png">
+</head>
+<body>
+	<div class="container">
+        <header id="header" class="sixteen columns">
+            <hgroup>
+                <h1 class="remove-bottom">Zennex Chat</h1>
+                <h5>by Denis Lysenko</h5>
+            </hgroup>
+        </header>
+
+        <section class="two-thirds column" id="messages">
+            <?=$articles?>
+        </section>
+
+        <aside class="one-third column">
+            <form id="mainForm" action="?action=add" method="post" enctype="multipart/form-data">
+                <?php if ($user === false): ?>
+                <input name="message[user]" type="text" id="regularInput" placeholder="Введите ваше имя">
+                <?php else: ?>
+                <h3>Привет, <?=$user?>!</h3>
+                <a href="?action=logout"><h5>Выйти</h5></a>
+                <textarea name="message[text]" id="regularTextarea" placeholder="Введите ваше сообщение"></textarea>
+                <input name="attach[]" type="file" class="multi" maxlength="3" accept="png|gif|jpg|jpeg">
+                <?php endif; ?>
+                <button id="sendButton" type="submit">Отправить</button>
+            </form>
+        </aside>
+
+        <footer id="footer" class="sixteen columns">
+            <ul class="six colums alpha">
+                <li>&copy; 2012 <a href="mailto:dnslsnk@gmail.com">Denis Lysenko</a></li>
+            </ul>
+        </footer>
+	</div>
+    <script src="static/js/jquery-1.8.0.js"></script>
+    <script src="static/js/jquery.MultiFile.pack.js"></script>
+    <script src="static/js/zennex.js"></script>
+</body>
+</html>
